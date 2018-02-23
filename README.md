@@ -19,6 +19,7 @@ Three JavaScript files replicate the basics of a simple ecommerce engine:
     ![Screenshot](Images/bamazonManagerProducts.png)
 
     * View Low Inventory
+    
     ![Screenshot](Images/bamazonManagerLow.png)
 
     * Add to Inventory
