@@ -16,16 +16,16 @@ Three JavaScript files replicate the basics of a simple ecommerce engine:
  - The manager module lets managers view the list of products, view low inventory, add inventory, and add products.
   - A sample of the menu is below:
     * View Products for Sale 
-	(Images/bamazonManagerProducts.png)
+    ![Screenshot](Images/bamazonManagerProducts.png)
 
     * View Low Inventory
-    (Images/bamazonManagerLow.png)
+    ![Screenshot](Images/bamazonManagerLow.png)
 
     * Add to Inventory
-    (Images/bamazonManagerInventory.png)
+    ![Screenshot] (Images/bamazonManagerInventory.png)
 
     * Add New Product
-	(Images/bamazonManagerNew.png)
+    ![Screenshot](Images/bamazonManagerNew.png)
 
 ## Technologies used
 - Node.js
