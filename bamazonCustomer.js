@@ -3,10 +3,7 @@ var mysql = require('mysql');
 const cTable = require("console.table");
 
 
-var amountOwed;
-var currentDepartment;
-var updateSales;
-
+// Create the connection information for the sql database
 var connection = mysql.createConnection({
 	host: 'localhost',
 	port: 3306,
@@ -15,13 +12,14 @@ var connection = mysql.createConnection({
 	database: 'bamazon_db'
 });
 
-//Establish Connection
+// Connect to the mysql server and sql database
 connection.connect(function(err){
 	if (err) throw err;
 	console.log('connected as id: ' + connection.threadId)
 	displayInventory()
 });
 
+// Display Inventory Table
 function displayInventory(){
 	connection.query("SELECT * FROM products", function(err, res){
 		if (err) throw err;
@@ -34,7 +32,7 @@ function displayInventory(){
 		})
 }
 
-//Prompts the user to place an order, fulfills the order, and then calls the new order function
+//Prompts the user to place an order
 function placeOrder(){
 	inquirer.prompt([{
 		name: "selectId",
@@ -58,14 +56,15 @@ function placeOrder(){
 				return "Please enter a numerical value"
 		}
 	}]).then(function(answer){
+	  // If there is not enough quantity to complete the purchase
 	connection.query("SELECT * FROM products WHERE id = ?", [answer.selectId], function(err, res){
 		if(answer.selectQuantity > res[0].stock_quantity){
 			console.log("Insufficient Quantity!");
 			console.log('This order has been cancelled');
 			console.log('');
-			// newOrder();
 		}
 		else{
+		      // Total cost of the item * quantity purchased
 			totalCost = res[0].price * answer.selectQuantity;
 			currentDepartment = res[0].department;
 			console.log('Your order has been placed!');
@@ -77,7 +76,6 @@ function placeOrder(){
 			},{
 				id: answer.selectId
 			}], function(err, res){});
-
 				displayInventory();
 		}
 	})
