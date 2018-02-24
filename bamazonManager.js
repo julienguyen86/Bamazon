@@ -154,6 +154,7 @@ var addProduct = function() {
                 console.log("Your product was added successfully!");
                 // Lets manager select new action.
                 selectAction();
+                viewProducts();
             }
         });
     });
