@@ -1,5 +1,7 @@
 var inquirer = require('inquirer');
 var mysql = require('mysql');
+const cTable = require("console.table");
+
 
 // Define the MySQL connection parameters
 var connection = mysql.createConnection({
@@ -64,10 +66,10 @@ var viewProducts = function() {
 	var query = "Select * FROM products";
 	connection.query(query, function(err, res) {
 		if (err) throw err;
-		for (var i = 0; i < res.length; i++) {
-			console.log("ID: " + res[i].id + " | " + "Product: " + res[i].product_name + " | " + "Department: " + res[i].department_name + " | " + "Price: " + res[i].price + " | " + "QTY: " + res[i].stock_quantity);
-		}
-
+		// for (var i = 0; i < res.length; i++) {
+		// 	console.log("ID: " + res[i].id + " | " + "Product: " + res[i].product_name + " | " + "Department: " + res[i].department_name + " | " + "Price: " + res[i].price + " | " + "QTY: " + res[i].stock_quantity);
+		// }
+		console.table(res);
 		// Lets manager select new action.
 		selectAction();
 	});
@@ -78,10 +80,10 @@ var viewLowInventory = function() {
 	var query = "SELECT * FROM products WHERE stock_quantity < 5";
 	connection.query(query, function(err, res) {
 		if (err) throw err;
-		for (var i = 0; i < res.length; i++) {
-			console.log("ID: " + res[i].id + " | " + "Product: " + res[i].product_name + " | " + "Department: " + res[i].department_name + " | " + "Price: " + res[i].price + " | " + "QTY: " + res[i].stock_quantity);
-		}
-
+		// for (var i = 0; i < res.length; i++) {
+		// 	console.log("ID: " + res[i].id + " | " + "Product: " + res[i].product_name + " | " + "Department: " + res[i].department_name + " | " + "Price: " + res[i].price + " | " + "QTY: " + res[i].stock_quantity);
+		// }
+		console.table(res);
 		// Lets manager select new action.
 		selectAction();
 	});
@@ -167,6 +169,7 @@ var addProduct = function() {
 		});
 	});
 };
+
 
 
 

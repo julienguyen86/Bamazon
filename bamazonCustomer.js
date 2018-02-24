@@ -1,5 +1,6 @@
 var inquirer = require('inquirer');
 var mysql = require('mysql');
+const cTable = require("console.table");
 
 
 var amountOwed;
@@ -18,6 +19,7 @@ var connection = mysql.createConnection({
 connection.connect(function(err){
 	if (err) throw err;
 	console.log('connected as id: ' + connection.threadId)
+	displayInventory()
 });
 
 function displayInventory(){
@@ -26,11 +28,7 @@ function displayInventory(){
 		console.log('===============Welcome To Bamazon================');
 		console.log('=================Items in Store==================');
 		console.log('=================================================');
-
-		
-		for(i=0;i<res.length;i++){
-			 console.log("ID: " + res[i].id + " | " + "Product: " + res[i].product_name + " | " + "Department: " + res[i].department_name + " | " + "Price: " + res[i].price + " | " + "QTY: " + res[i].stock_quantity);
-		}
+		console.table(res);
 		console.log('=================================================');
 		placeOrder();
 		})
@@ -65,7 +63,7 @@ function placeOrder(){
 			console.log("Insufficient Quantity!");
 			console.log('This order has been cancelled');
 			console.log('');
-			newOrder();
+			// newOrder();
 		}
 		else{
 			totalCost = res[0].price * answer.selectQuantity;
@@ -80,46 +78,12 @@ function placeOrder(){
 				id: answer.selectId
 			}], function(err, res){});
 			//update departments table
-			logSaleToDepartment();
-			newOrder();
+			// logSaleToDepartment();
+			// newOrder();
+				displayInventory();
 		}
 	})
 
 }, function(err, res){})
 };
 
-Allows the user to place a new order or end the connection
-function newOrder(){
-  inquirer.prompt([{
-    type: "confirm",
-    name: "reply",
-    message: "Would you like to purchase another item?"
-  }]).then(function(ans){
-    if(ans.reply){
-      placeOrder();
-    } else{
-      console.log("See you soon!");
-    }
-  });
-}
-
-
-
-//functions to push the sales to the executive table
-function logSaleToDepartment(){
-	connection.query('SELECT * FROM departments WHERE DepartmentName = ?', [currentDepartment], function(err, res){
-		updateSales = res[0].TotalSales + amountOwed;
-		updateDepartmentTable();
-	})
-};
-
-function updateDepartmentTable(){
-		connection.query('UPDATE departments SET ? WHERE ?', [{
-		TotalSales: updateSales
-	},{
-		DepartmentName: currentDepartment
-	}], function(err, res){});
-};
-//Call the original function (all other functions are called within this function)
-// //======================================================================
-displayInventory();

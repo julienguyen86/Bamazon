@@ -10,7 +10,7 @@ Three JavaScript files replicate the basics of a simple ecommerce engine:
 - `bamazonCustomer.js`
   -  Running this application will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
 
-  (Images/bamazonCustomer.png)
+   ![Giphy](Images/Customerpurchase.gif)
 
 - `bamazonManager.js` 
  - The manager module lets managers view the list of products, view low inventory, add inventory, and add products.
