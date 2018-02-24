@@ -1,7 +1,7 @@
 {
   "name": "bamazon",
   "version": "1.0.0",
-  "description": "### Overview This application is an Amazon-like storefront with [MySQL](https://www.npmjs.com/package/mysql) & [Node.JS](https://www.npmjs.com/).",
+  "description": "### Overview This application is an Amazon-like storefront with MySQL.",
   "main": "bamazonCustomer.js",
   "dependencies": {
     "console.table": "^0.10.0",
