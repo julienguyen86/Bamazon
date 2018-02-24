@@ -1,12 +1,12 @@
 #bamazon
 
 ### Overview
-This application is an Amazon-like storefront with [MySQL](https://www.npmjs.com/package/mysql) & [Node.JS](https://www.npmjs.com/).
-
+This application is an Amazon-like storefront with MySQL. The application takes in orders from customers and deplete stock from the store's inventory as well as let managers view and update their stock.
 
 ### Node.js
 Three JavaScript files replicate the basics of a simple ecommerce engine:
 
+### #1: Customer View
 - `bamazonCustomer.js`
   -  Running this application will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
 
@@ -16,7 +16,7 @@ Three JavaScript files replicate the basics of a simple ecommerce engine:
 
    ![Giphy](Images/CustomerInsuffient.gif)
 
-
+### #2: Manager View
 - `bamazonManager.js` 
  - The manager module lets managers view the list of products, view low inventory, add inventory, and add products.
   - A sample of the menu is below:
@@ -40,6 +40,7 @@ Three JavaScript files replicate the basics of a simple ecommerce engine:
 - Node.js
 - Inquire NPM Package (https://www.npmjs.com/package/inquirer)
 - MYSQL NPM Package (https://www.npmjs.com/package/mysql)
+- Console.table Package (https://www.npmjs.com/package/console.table)
 
 ### Prerequisites
 
