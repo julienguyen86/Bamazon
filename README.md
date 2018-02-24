@@ -4,9 +4,9 @@
 This application is an Amazon-like storefront with MySQL. The application takes in orders from customers and deplete stock from the store's inventory as well as let managers view and update their stock.
 
 ### To Run:
+Open and run `bamazon.sql` to create the MySQL database and create the necessary tables.
 ```npm install```
 
-Open and run `bamazon.sql` to create the MySQL database and create the necessary tables.
 
 ### Node.js
 Three JavaScript files replicate the basics of a simple ecommerce engine: 
