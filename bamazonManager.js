@@ -3,20 +3,16 @@ var mysql = require('mysql');
 const cTable = require("console.table");
 
 
-// Define the MySQL connection parameters
+// Create the connection information for the sql database
 var connection = mysql.createConnection({
 	host: 'localhost',
 	port: 3306,
-
-	// Your username
 	user: 'root',
-
-	// Your password
 	password: '',
 	database: 'bamazon_db'
 });
 
-//Establish Connection
+// Connect to the mysql server and sql database
 connection.connect(function(err){
 	if (err) throw err;
 	console.log('connected as id: ' + connection.threadId)
@@ -24,7 +20,7 @@ connection.connect(function(err){
 
 });
 
-// Manager picks action they wish to complete.
+// Manager selects action they wish to complete
 var selectAction = function() {
 	inquirer.prompt([
 	{
@@ -61,7 +57,7 @@ var selectAction = function() {
 	});
 };
 
-// Displays list of all available products.
+// Displays list of all available products
 var viewProducts = function() {
 	var query = "Select * FROM products";
 	connection.query(query, function(err, res) {
@@ -75,7 +71,7 @@ var viewProducts = function() {
 	});
 };
 
-// Displays products with low inventory.
+// Displays products with low inventory less than five.
 var viewLowInventory = function() {
 	var query = "SELECT * FROM products WHERE stock_quantity < 5";
 	connection.query(query, function(err, res) {
@@ -89,7 +85,7 @@ var viewLowInventory = function() {
 	});
 };
 
-// Adds new stock to selected product.
+// Adds new stock to selected product
 var addInventory = function() {
 	var query = "SELECT * FROM products";
   connection.query(query, function(err, res){
@@ -113,8 +109,7 @@ var addInventory = function() {
 			if(isNaN(value) === false) {
 				return true;
 			}
-				return "Please enter a numerical value"
-		
+				return "Please enter a numerical value"	
     }
     }]).then(function(ans){
       var currentQty;
@@ -134,7 +129,7 @@ var addInventory = function() {
       })
   });
 }
-
+// Adds new product to the table
 var addProduct = function() {
 	inquirer.prompt([{
 		name: "product",
@@ -163,7 +158,6 @@ var addProduct = function() {
 				throw err;
 			} else {
 				console.log("Your product was added successfully!");
-
 				selectAction();
 			}
 		});
