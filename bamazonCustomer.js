@@ -77,9 +77,7 @@ function placeOrder(){
 			},{
 				id: answer.selectId
 			}], function(err, res){});
-			//update departments table
-			// logSaleToDepartment();
-			// newOrder();
+
 				displayInventory();
 		}
 	})
